@@ -27,13 +27,22 @@ img = xiapi.Image()
 print('Starting data acquisition...')
 cam.start_acquisition()
 
+#variables
+k=1
 
-while cv2.waitKey() != ord('q'):
+while cv2.waitKey() != ord('q') :
     cam.get_image(img)
     image = img.get_image_data_numpy()
     image = cv2.resize(image,(240,240))
     cv2.imshow("test", image)
+
+    if k < 5 :
+        cv2.imwrite(str(k) +".jpg", image)
+        k = k+1
+
     cv2.waitKey()
+
+print('test')
 
 # for i in range(10):
 #     #get data and pass them from camera to img
