@@ -1,4 +1,4 @@
-from ximea import xiapi
+
 import cv2
 ### runn this command first echo 0|sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb  ###
 
