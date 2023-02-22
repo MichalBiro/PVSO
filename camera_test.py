@@ -6,7 +6,7 @@ import cv2
 cam = xiapi.Camera()
 
 
-
+print ("hello")
 #start communication
 #to open specific device, use:
 #cam.open_device_by_SN('41305651')
