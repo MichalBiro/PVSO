@@ -1,22 +1,46 @@
+from ximea import xiapi
 import cv2 as cv
 import numpy as np
 from PIL import Image
 import os
 from PIL.ExifTags import TAGS
 
-# Read the image
+### runn this command first echo 0|sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb  ###
 
-cam = cv.VideoCapture(0)
+#create instance for first connected camera
+cam = xiapi.Camera()
+
+#start communication
+#to open specific device, use:
+#cam.open_device_by_SN('41305651')
+#(open by serial number)
+print('Opening first camera...')
+cam.open_device()
+
+#settings
+cam.set_exposure(10000)
+cam.set_param('imgdataformat','XI_RGB32')
+cam.set_param('auto_wb', 1)
+print('Exposure was set to %i us' %cam.get_exposure())
+
+#create instance of Image to store image data and metadata
+img = xiapi.Image()
+
+#start data acquisition
+print('Starting data acquisition...')
+cam.start_acquisition()
 
 img_counter = 0
 
 while True:
     # Initializing the frame, ret
-    ret, frame = cam.read()
+    cam.get_image(img)
+    frame = img.get_image_data_numpy()
+    frame = cv.resize(frame, (480, 480))
 
-    if not ret:
-        print('failed to grab frame')
-        break
+    #if not ret:
+    #    print('failed to grab frame')
+    #    break
 
     cv.imshow('Webcam image', frame)
     # To get continuous live video feed from my laptops webcam
@@ -37,8 +61,12 @@ while True:
         break
 
 
-# Release the camera
-cam.release()
+#stop data acquisition
+print('Stopping acquisition...')
+cam.stop_acquisition()
+
+#stop communication
+cam.close_device()
 
 
 # Read images
