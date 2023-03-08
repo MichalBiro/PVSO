@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f76459cf-0b2a-4f10-a2f6-2ab7c5578c1b" name="Changes" comment="" />
+    <list default="true" id="abc6f272-afe2-4f24-a5d6-4ac6f6e6825f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2MPvEmVcptG15RB4RJWrVB2hl0N" />
+  <component name="ProjectId" id="2MjcdgsJIHPwwTvRyHHlUtXEq0X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,24 +19,24 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/STU_PROGRAMS/Documents/PycharmProjects/PVSO"
+    "last_opened_file_path": "D:/STU_PROGRAMS/Documents/PycharmProjects/PVSO",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Biro-Gondor" />
+      <module name="Zadanie_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\STU_PROGRAMS\Documents\PycharmProjects\PVSO\venv\Scripts\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11 (PVSO)" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Zadanie_2" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Zadanie_2/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -60,11 +54,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f76459cf-0b2a-4f10-a2f6-2ab7c5578c1b" name="Changes" comment="" />
-      <created>1677681930809</created>
+      <changelist id="abc6f272-afe2-4f24-a5d6-4ac6f6e6825f" name="Changes" comment="" />
+      <created>1678284521138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1677681930809</updated>
+      <updated>1678284521138</updated>
     </task>
     <servers />
   </component>
