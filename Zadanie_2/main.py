@@ -39,7 +39,7 @@ while True:
     # Initializing the frame, ret
     cam.get_image(img)
     frame = img.get_image_data_numpy()
-    frame = cv.resize(frame, (800, 800))
+    frame = cv.resize(frame, (720, 720))
 
     # if not ret:
     #    print('failed to grab frame')
@@ -54,7 +54,7 @@ while True:
         exit()
     elif k%256  == 32: # SPACE pressed - take picture
         img_name = "img{}.jpg".format(img_counter+1)
-        frame = cv.resize(frame, (800, 800))
+        frame = cv.resize(frame, (720, 720))
         cv.imwrite(img_name, frame)
         print("{} written!".format(img_name))
         img_counter += 1
@@ -64,12 +64,7 @@ while True:
         break
 
 
-#stop data acquisition
-print('Stopping acquisition...')
-cam.stop_acquisition()
 
-#stop communication
-cam.close_device()
 
 # termination criteria
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -124,12 +119,14 @@ x, y, w, h = roi
 dst = dst[y:y+h, x:x+w]
 cv.imwrite('calibresult.png', dst)
 
+while True:
+    cam.get_image(img)
+    frame = img.get_image_data_numpy()
+    frame = cv.resize(frame, (720, 720))
 
-for fname in images:
-    img = cv.imread(fname)
-    if not ret:
-        print('failed to grab frame')
-        break
+    # if not ret:
+    #     print('failed to grab frame')
+    #     break
 
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
@@ -166,5 +163,9 @@ for fname in images:
         # print("{} written!".format(img_name))
         # src = cv.imread('img.jpg')
 
+#stop data acquisition
+print('Stopping acquisition...')
+cam.stop_acquisition()
 
-print('end')
+#stop communication
+cam.close_device()
