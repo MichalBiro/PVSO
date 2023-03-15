@@ -33,7 +33,7 @@ cam.start_acquisition()
 
 img_counter = 0
 
-wanted_image_count = 10
+wanted_image_count = 15
 
 while True:
     # Initializing the frame, ret
@@ -54,7 +54,7 @@ while True:
         exit()
     elif k%256  == 32: # SPACE pressed - take picture
         img_name = "img{}.jpg".format(img_counter+1)
-        frame = cv.resize(frame, (720, 720))
+        # frame = cv.resize(frame, (720, 720))
         cv.imwrite(img_name, frame)
         print("{} written!".format(img_name))
         img_counter += 1
@@ -76,8 +76,8 @@ objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane.
 images = glob.glob('*.jpg')
 for fname in images:
-    img = cv.imread(fname)
-    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    image = cv.imread(fname)
+    gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     # Find the chess board corners
     ret, corners = cv.findChessboardCorners(gray, (7,5), None)
     # If found, add object points, image points (after refining them)
@@ -87,8 +87,8 @@ for fname in images:
         corners2 = cv.cornerSubPix(gray,corners, (11,11), (-1,-1), criteria)
         imgpoints.append(corners2)
         # Draw and display the corners
-        cv.drawChessboardCorners(img, (7,5), corners2, ret)
-        cv.imshow('img', img)
+        cv.drawChessboardCorners(image, (7,5), corners2, ret)
+        cv.imshow('img', image)
         cv.waitKey()
 # cv.destroyAllWindows()
 
@@ -103,21 +103,18 @@ print(mtx)
 print('----')
 print(dist)
 print('----')
-print(rvecs)
-print('----')
-print(tvecs)
 
-img = cv.imread('img1.jpg')
-h,  w = img.shape[:2]
+image = cv.imread('img1.jpg')
+h,  w = image.shape[:2]
 newcameramtx, roi = cv.getOptimalNewCameraMatrix(mtx, dist, (w,h), 1, (w,h))
-
-print('undistort')
-# undistort
-dst = cv.undistort(img, mtx, dist, None, newcameramtx)
-# crop the image
-x, y, w, h = roi
-dst = dst[y:y+h, x:x+w]
-cv.imwrite('calibresult.png', dst)
+#
+# print('undistort')
+# # undistort
+# dst = cv.undistort(image, mtx, dist, None, newcameramtx)
+# # crop the image
+# x, y, w, h = roi
+# dst = dst[y:y+h, x:x+w]
+# cv.imwrite('calibresult.png', dst)
 
 while True:
     cam.get_image(img)
@@ -128,13 +125,18 @@ while True:
     #     print('failed to grab frame')
     #     break
 
+    x, y, w, h = roi
+    frame = frame[y:y + h, x:x + w]
+
+    frame = cv.undistort(frame, mtx, dist, None, newcameramtx)
+
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
     gray = cv.medianBlur(gray, 5)
 
     rows = gray.shape[0]
     circles = cv.HoughCircles(gray, cv.HOUGH_GRADIENT, 1, rows / 8,
-                              param1=200, param2=30,
+                              param1=125, param2=50,
                               minRadius=0, maxRadius=0)
 
     if circles is not None:
@@ -156,12 +158,6 @@ while True:
     if k % 256 == 27:  # ESC pressed - close app
         print('ESC pressed, closing the app')
         exit()
-    elif k % 256 == 32:  # SPACE pressed - take picture
-        img_name = "img.jpg"
-        # frame = cv.resize(frame, (240, 240))
-        # cv.imwrite(img_name, frame)
-        # print("{} written!".format(img_name))
-        # src = cv.imread('img.jpg')
 
 #stop data acquisition
 print('Stopping acquisition...')
