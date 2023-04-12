@@ -73,5 +73,3 @@ cv.imwrite('CV_LoG.jpg', image3)
 
 image3_myFilter = my_filter_2d(image1_myFilter, laplacian)
 cv.imwrite('myFilter_LoG.jpg', image3_myFilter)
-
-
