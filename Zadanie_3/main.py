@@ -1,7 +1,9 @@
+
 #Pouzivaly sme literaturu: https://github.com/Lew-Morris/filter2D
 
 import cv2 as cv
 import numpy as np
+
 
 def my_filter_2d(input_image, kernel):
     # Get size of kernel
@@ -37,6 +39,7 @@ image = cv.imread('zebra.jpg')
 
 image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 
+
 cv.imshow('zebra', image)
 
 laplacian = np.array([[0, 0, -1, 0, 0],
@@ -45,16 +48,19 @@ laplacian = np.array([[0, 0, -1, 0, 0],
                    [0, -1, -4, -1, 0],
                    [0, 0 , -1, 0, 0]])
 
+
 gaussian = np.array([[1, 8, 12, 8 , 1 ],
                      [8, 12, 20, 12, 8],
                      [12, 20, 40, 20, 12],
                      [8, 12, 20, 12, 8],
                      [1, 8, 12, 8, 1]])/80
 
+
 print(laplacian)
 print(gaussian)
 
 log = gaussian - laplacian
+
 
 image1 = cv.filter2D(image, -1, gaussian)
 cv.imwrite('CV_gaussian.jpg', image1)
